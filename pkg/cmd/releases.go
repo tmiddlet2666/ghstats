@@ -8,8 +8,8 @@ import (
 	"github.com/tmiddlet2666/ghstats/pkg/utils"
 )
 
-// getTags implements the 'get tags' command
-var getTags = &cobra.Command{
+// getReleasesCmd implements the 'get tags' command
+var getReleasesCmd = &cobra.Command{
 	Use:   "releases",
 	Short: "Display the releases for a user and repository",
 	Long:  `The 'get releases' command displays the releases for a GitHub repository.`,

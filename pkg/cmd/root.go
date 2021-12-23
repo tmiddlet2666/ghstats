@@ -43,7 +43,8 @@ func init() {
 
 	// get
 	rootCmd.AddCommand(getCmd)
-	getCmd.AddCommand(getTags)
+	getCmd.AddCommand(getReleasesCmd)
+	getCmd.AddCommand(getDownloadsCmd)
 
 	rootCmd.SetOut(os.Stdout)
 	rootCmd.SetErr(os.Stderr)

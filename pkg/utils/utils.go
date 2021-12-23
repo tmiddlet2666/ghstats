@@ -7,11 +7,15 @@ import (
 	"fmt"
 	"github.com/tmiddlet2666/ghstats/pkg/config"
 	"github.com/tmiddlet2666/ghstats/pkg/constants"
+	"golang.org/x/text/language"
+	"golang.org/x/text/message"
 	"io"
 	"net/http"
 	"net/http/cookiejar"
 	"time"
 )
+
+var printer = message.NewPrinter(language.English)
 
 // GetAPIURL returns the API URL for a username and repository
 func GetAPIURL(username, repository string) string {
@@ -91,4 +95,35 @@ func HttpGETRequest(URL string) ([]byte, int, error) {
 	body = buffer.Bytes()
 
 	return body, resp.StatusCode, nil
+}
+
+func FormatFileSize(memoryMB int64) string {
+	var memory = float64(memoryMB)
+	if memory < 1024 {
+		return printer.Sprintf("%10.2fB", memory)
+	}
+	memory /= 1024
+
+	if memory < 1024 {
+		return printer.Sprintf("%10.2fKB", memory)
+	}
+
+	memory /= 1024
+
+	if memory < 1024 {
+		return printer.Sprintf("%10.2fMB", memory)
+	}
+
+	memory /= 1024
+	if memory < 1024 {
+		return printer.Sprintf("%-.3fGB", memory)
+	}
+
+	memory /= 1024
+	return printer.Sprintf("%-.3fTB", memory)
+}
+
+// FormatLargeInteger formats a large integer
+func FormatLargeInteger(value int64) string {
+	return printer.Sprintf("%10d", value)
 }

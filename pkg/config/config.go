@@ -18,4 +18,6 @@ type Asset struct {
 	ContentType   string `json:"content_type"`
 	Size          int64  `json:"size"`
 	DownloadCount int64  `json:"download_count"`
+	CreatedAt     string `json:"created_at"`
+	UpdatedAt     string `json:"updated_at"`
 }

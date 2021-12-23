@@ -47,7 +47,7 @@ jobs:
 
     - name: Unit Tests
       shell: bash
-      run: make test-ghstats
+      run: make test
 
     - name: build
       shell: bash

@@ -68,10 +68,11 @@ help: ## Display this help.
 .PHONY: clean
 clean: ## Cleans the build
 	@echo "Cleaning Project"
-	-rm -rf build/_output
+	-rm -rf $(BUILD_OUTPUT)
 	-rm -rf bin
 	@mkdir -p $(TEST_LOGS_DIR)
 	@mkdir -p $(COVERAGE_DIR)
+	@mkdir -p $(BUILD_OUTPUT)
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Configure the build properties
@@ -108,8 +109,8 @@ golangci: $(TOOLS_BIN)/golangci-lint ## Go code review
 # ----------------------------------------------------------------------------------------------------------------------
 # Executes the Go unit tests
 # ----------------------------------------------------------------------------------------------------------------------
-.PHONY: test-ghstats
-test-ghstats: test-clean gotestsum $(BUILD_PROPS) ## Run the unit tests
+.PHONY: test
+test: test-clean gotestsum $(BUILD_PROPS) ## Run the unit tests
 	CGO_ENABLED=0 $(GOTESTSUM) --format testname --junitfile $(TEST_LOGS_DIR)/cohctl-test.xml \
 	  -- $(GO_TEST_FLAGS) -v -coverprofile=$(COVERAGE_DIR)/cover-unit.out ./pkg/cmd/... ./pkg/utils/...
 	go tool cover -html=$(COVERAGE_DIR)/cover-unit.out -o $(COVERAGE_DIR)/cover-unit.html

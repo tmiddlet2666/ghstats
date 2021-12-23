@@ -51,7 +51,7 @@ jobs:
 
     - name: build
       shell: bash
-      run: make ghstats
+      run: make clean ghstats
 
     - uses: actions/upload-artifact@v1
       if: failure()

@@ -18,6 +18,11 @@ func GetAPIURL(username, repository string) string {
 	return fmt.Sprintf("%s/%s/%s", constants.APIPrefix, username, repository)
 }
 
+// GetRepositoryURL returns the GitHub repository URL
+func GetRepositoryURL(username, repository string) string {
+	return fmt.Sprintf("https://github.com/%s/%s", username, repository)
+}
+
 // GetReleases returns release details
 func GetReleases(username, repository string) ([]config.Release, error) {
 	var (
@@ -43,7 +48,6 @@ func GetReleases(username, repository string) ([]config.Release, error) {
 	}
 
 	return releases, nil
-
 }
 
 // HttpGETRequest issues a GET request and returns the contents

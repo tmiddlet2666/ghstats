@@ -43,11 +43,15 @@ jobs:
     - name: Code Review
       shell: bash
       run: |
-        make golangci
+        make clean golangci
 
     - name: Unit Tests
       shell: bash
       run: make test-ghstats
+
+    - name: build
+      shell: bash
+      run: make ghstats
 
     - uses: actions/upload-artifact@v1
       if: failure()

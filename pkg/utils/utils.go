@@ -100,7 +100,7 @@ func HttpGETRequest(URL string) ([]byte, int, error) {
 func FormatFileSize(memoryMB int64) string {
 	var memory = float64(memoryMB)
 	if memory < 1024 {
-		return printer.Sprintf("%10.2fB", memory)
+		return printer.Sprintf("%11.2fB", memory)
 	}
 	memory /= 1024
 

@@ -15,23 +15,20 @@ make ghstats
 ### Help
 
 ```bash
-$ ghstats --help
-This command allows you to retrieve various stats about GitHuub Repositories.
+$ ghstats get downloads --help
+The 'get downloads' command displays the downloads for asssets for a GitHub repository.
 
 Usage:
-  ghstats [command]
-
-Available Commands:
-  completion  generate the autocompletion script for the specified shell
-  get         Display one or many resources
-  help        Help about any command
+  ghstats get downloads [flags]
 
 Flags:
-  -h, --help                help for ghstats
+  -f, --file-name string   file name to show downloads for
+  -h, --help               help for downloads
+  -t, --tag string         tag to show downloads for (default "all")
+
+Global Flags:
   -r, --repository string   GitHub repository
   -u, --username string     GitHub username
-
-Use "ghstats [command] --help" for more information about a command.
 ```
 
 ### 1. Getting all downloads for a repository

@@ -15,7 +15,7 @@ make ghstats
 ### Help
 
 ```bash
-$ $ ghstats get --help
+$ ghstats get --help
 The 'get' command displays one or more resources.
 
 Usage:

@@ -21,3 +21,14 @@ type Asset struct {
 	CreatedAt     string `json:"created_at"`
 	UpdatedAt     string `json:"updated_at"`
 }
+
+type Repository struct {
+	ID          int64  `json:"id"`
+	Name        string `json:"name"`
+	FullName    string `json:"full_name"`
+	Description string `json:"description"`
+	Stars       int64  `json:"stargazers_count"`
+	Forks       int64  `json:"forks"`
+	Subscribers int64  `json:"subscribers_count"`
+	Language    string `json:"language"`
+}

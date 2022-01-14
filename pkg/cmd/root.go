@@ -45,6 +45,7 @@ func init() {
 	rootCmd.AddCommand(getCmd)
 	getCmd.AddCommand(getReleasesCmd)
 	getCmd.AddCommand(getDownloadsCmd)
+	getCmd.AddCommand(getRepo)
 
 	rootCmd.SetOut(os.Stdout)
 	rootCmd.SetErr(os.Stderr)

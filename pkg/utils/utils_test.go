@@ -50,3 +50,16 @@ func TestGetReleases(t *testing.T) {
 	g.Expect(err).To(BeNil())
 	g.Expect(len(releases) > 0).To(BeTrue())
 }
+
+func TestGetRepository(t *testing.T) {
+	var (
+		g    = NewGomegaWithT(t)
+		err  error
+		repo config.Repository
+	)
+
+	repo, err = GetRepoDetails("oracle", "coherence-visualvm")
+	g.Expect(err).To(BeNil())
+	g.Expect(repo).To(Not(BeNil()))
+	g.Expect(repo.Stars > 0).To(BeTrue())
+}

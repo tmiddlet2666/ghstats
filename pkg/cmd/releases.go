@@ -8,7 +8,7 @@ import (
 	"github.com/tmiddlet2666/ghstats/pkg/utils"
 )
 
-// getReleasesCmd implements the 'get tags' command
+// getReleasesCmd implements the 'get releases
 var getReleasesCmd = &cobra.Command{
 	Use:   "releases",
 	Short: "Display the releases for a user and repository",
@@ -27,11 +27,17 @@ var getReleasesCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		tbl := table.New("TAG", "Name", "Pre-release?", "Published", "Assets")
+		tbl := table.New("TAG", "Name", "Pre-release?", "Published", "    Assets", " Downloads")
 		tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
 
 		for _, value := range releases {
-			tbl.AddRow(value.TagName, value.Name, value.PreRelease, value.PublishedAt, len(value.Assets))
+			var totalAssetDownloads int64 = 0
+			for _, v := range value.Assets {
+				totalAssetDownloads += v.DownloadCount
+			}
+			tbl.AddRow(value.TagName, value.Name, value.PreRelease, value.PublishedAt,
+				utils.FormatLargeInteger(int64(len(value.Assets))),
+				utils.FormatLargeInteger(totalAssetDownloads))
 		}
 		cmd.Printf("\nRepository: %s\n", utils.GetRepositoryURL(userName, repo))
 		tbl.Print()

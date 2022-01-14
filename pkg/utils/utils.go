@@ -27,6 +27,32 @@ func GetRepositoryURL(username, repository string) string {
 	return fmt.Sprintf("https://github.com/%s/%s", username, repository)
 }
 
+// GetRepoDetails returns repository details
+func GetRepoDetails(username, repository string) (config.Repository, error) {
+	var (
+		err              error
+		data             []byte
+		status           int
+		repositoryResult = config.Repository{}
+		repoURL          = GetAPIURL(username, repository)
+	)
+	data, status, err = HttpGETRequest(repoURL)
+	if err != nil {
+		return repositoryResult, fmt.Errorf("unable to get repository for user: %s, repo: %s - %v", username, repository, err)
+	}
+
+	if status != 200 {
+		return repositoryResult, fmt.Errorf("status code %d returned for %s", status, repoURL)
+	}
+
+	err = json.Unmarshal(data, &repositoryResult)
+	if err != nil {
+		return repositoryResult, fmt.Errorf("unable to unmarshall rep. %v", err)
+	}
+
+	return repositoryResult, nil
+}
+
 // GetReleases returns release details
 func GetReleases(username, repository string) ([]config.Release, error) {
 	var (

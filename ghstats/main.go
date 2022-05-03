@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	// Version is the cohctl version injected by the Go linker at build time
+	// Version is the ghstats version injected by the Go linker at build time
 	Version string
 	// Commit is the git commit hash injected by the Go linker at build time
 	Commit string

@@ -11,11 +11,10 @@ import (
 // getReleasesCmd implements the 'get releases
 var getReleasesCmd = &cobra.Command{
 	Use:   "releases",
-	Short: "Display the releases for a user and repository",
+	Short: "display the releases for a user and repository",
 	Long:  `The 'get releases' command displays the releases for a GitHub repository.`,
 	Args:  cobra.ExactArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
-
 		var (
 			err            error
 			releases       []config.Release
@@ -23,6 +22,11 @@ var getReleasesCmd = &cobra.Command{
 			columnFmt      = color.New(color.FgYellow).SprintfFunc()
 			totalDownloads int64
 		)
+
+		err = validateUserAndRepo()
+		if err != nil {
+			return err
+		}
 
 		releases, err = utils.GetReleases(userName, repo)
 		if err != nil {

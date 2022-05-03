@@ -6,18 +6,22 @@ import (
 	"github.com/tmiddlet2666/ghstats/pkg/utils"
 )
 
-// getRepo implements the 'get rep' command
+// getRepo implements the 'get repo' command
 var getRepo = &cobra.Command{
 	Use:   "repo",
-	Short: "Display the repository details for a user and repository",
+	Short: "display the repository details for a user and repository",
 	Long:  `The 'get repo' command displays the repository details a GitHub repository.`,
 	Args:  cobra.ExactArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
-
 		var (
 			err         error
 			repoDetails config.Repository
 		)
+
+		err = validateUserAndRepo()
+		if err != nil {
+			return err
+		}
 
 		repoDetails, err = utils.GetRepoDetails(userName, repo)
 		if err != nil {

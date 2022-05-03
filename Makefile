@@ -111,7 +111,7 @@ golangci: $(TOOLS_BIN)/golangci-lint ## Go code review
 # ----------------------------------------------------------------------------------------------------------------------
 .PHONY: test
 test: test-clean gotestsum $(BUILD_PROPS) ## Run the unit tests
-	CGO_ENABLED=0 $(GOTESTSUM) --format testname --junitfile $(TEST_LOGS_DIR)/cohctl-test.xml \
+	CGO_ENABLED=0 $(GOTESTSUM) --format testname --junitfile $(TEST_LOGS_DIR)/ghstats-test.xml \
 	  -- $(GO_TEST_FLAGS) -v -coverprofile=$(COVERAGE_DIR)/cover-unit.out ./pkg/cmd/... ./pkg/utils/...
 	go tool cover -html=$(COVERAGE_DIR)/cover-unit.out -o $(COVERAGE_DIR)/cover-unit.html
 

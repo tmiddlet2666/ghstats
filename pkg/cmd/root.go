@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"github.com/spf13/cobra"
 	"github.com/tmiddlet2666/ghstats/pkg/constants"
 	"os"
@@ -22,7 +23,7 @@ func createRootCommand() *cobra.Command {
 		Use:          "ghstats",
 		Short:        "Get GitHub Stats",
 		SilenceUsage: true,
-		Long:         `This command allows you to retrieve various stats about GitHuub Repositories.`,
+		Long:         `This command allows you to retrieve various stats about GitHub Repositories.`,
 	}
 	return root
 }
@@ -41,11 +42,12 @@ func init() {
 	// initialize commands
 	initializeGlobalFlags()
 
-	// get
 	rootCmd.AddCommand(getCmd)
 	getCmd.AddCommand(getReleasesCmd)
 	getCmd.AddCommand(getDownloadsCmd)
 	getCmd.AddCommand(getRepo)
+
+	rootCmd.AddCommand(versionCmd)
 
 	rootCmd.SetOut(os.Stdout)
 	rootCmd.SetErr(os.Stderr)
@@ -55,6 +57,11 @@ func initializeGlobalFlags() {
 	// setup global flags
 	rootCmd.PersistentFlags().StringVarP(&userName, constants.UsernameFlag, "u", "", "GitHub username")
 	rootCmd.PersistentFlags().StringVarP(&repo, constants.RepositoryFlag, "r", "", "GitHub repository")
-	_ = rootCmd.MarkPersistentFlagRequired(constants.UsernameFlag)
-	_ = rootCmd.MarkPersistentFlagRequired(constants.RepositoryFlag)
+}
+
+func validateUserAndRepo() error {
+	if userName == "" || repo == "" {
+		return errors.New("you must provide username and report")
+	}
+	return nil
 }

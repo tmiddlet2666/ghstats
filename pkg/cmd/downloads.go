@@ -17,11 +17,10 @@ var (
 // getDownloadsCmd implements the 'get downloads' command
 var getDownloadsCmd = &cobra.Command{
 	Use:   "downloads",
-	Short: "Display the downloads for assets for a user and repository",
+	Short: "display the downloads for assets for a user and repository",
 	Long:  `The 'get downloads' command displays the downloads for asssets for a GitHub repository.`,
 	Args:  cobra.ExactArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
-
 		var (
 			err            error
 			releases       []config.Release
@@ -30,6 +29,11 @@ var getDownloadsCmd = &cobra.Command{
 			found          = false
 			totalDownloads int64
 		)
+
+		err = validateUserAndRepo()
+		if err != nil {
+			return err
+		}
 
 		releases, err = utils.GetReleases(userName, repo)
 		if err != nil {

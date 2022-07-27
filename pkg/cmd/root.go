@@ -61,7 +61,7 @@ func initializeGlobalFlags() {
 
 func validateUserAndRepo() error {
 	if userName == "" || repo == "" {
-		return errors.New("you must provide username and report")
+		return errors.New("you must provide username and repository")
 	}
 	return nil
 }

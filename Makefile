@@ -118,6 +118,14 @@ ghstats-all: $(BUILD_PROPS) $(GOS)  ## Build the ghstats supported platforms
 	mkdir -p $(BUILD_BIN)/windows/arm || true
 	CGO_ENABLED=0 GOOS=windows GOARCH=arm GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/windows/arm/ghstats.exe ./ghstats
 
+	@echo "Apple amd64 (x64)"
+	mkdir -p $(BUILD_BIN)/darwin/amd64 || true
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/darwin/amd64/ghstats ./ghstats
+
+	@echo "Apple Silicon (M1)"
+	mkdir -p $(BUILD_BIN)/darwin/arm64 || true
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/darwin/arm64/ghstats ./ghstats
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Executes golangci-lint to perform various code review checks on the source.
 # ----------------------------------------------------------------------------------------------------------------------

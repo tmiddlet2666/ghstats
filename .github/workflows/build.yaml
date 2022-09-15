@@ -91,7 +91,20 @@ jobs:
       with:
         name: ghstats-windows-arm
         path: bin/windows/arm/ghstats.exe
-      
+
+    - name: Upload Mac amd
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-darwin-amd
+        path: bin/darwin/amd64/ghstats
+
+    - name: Upload Mac arm
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-darwin-arm
+        path: bin/darwin/arm64/ghstats
 
     - uses: actions/upload-artifact@v1
       if: failure()

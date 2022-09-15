@@ -49,9 +49,49 @@ jobs:
       shell: bash
       run: make test
 
-    - name: build
+    - name: Build
       shell: bash
       run: make clean ghstats
+
+    - name: Make for all Platforms
+      shell: bash
+      run: make ghstats-all
+      
+    - name: Upload Linux amd64
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-linux-amd64
+        path: bin/linux/amd64/ghstats
+
+    - name: Upload Linux arm64
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-linux-arm64
+        path: bin/linux/arm64/ghstats
+
+    - name: Upload Linux 386
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-linux-386
+        path: bin/linux/386/ghstats
+
+    - name: Upload Windows amd64
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-windows-amd64
+        path: bin/windows/amd64/ghstats.exe
+
+    - name: Upload Windows arm
+      uses: actions/upload-artifact@v1
+      if: success()
+      with:
+        name: ghstats-windows-arm
+        path: bin/windows/arm/ghstats.exe
+      
 
     - uses: actions/upload-artifact@v1
       if: failure()

@@ -9,7 +9,7 @@ import (
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "show version information",
-	Long:  `The 'get version' shows the versionCmd information.`,
+	Long:  `The 'get version' shows the version information.`,
 	Args:  cobra.ExactArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		cmd.Printf("GitHub Stats\nVersion:      %s\nDate:         %s\n"+

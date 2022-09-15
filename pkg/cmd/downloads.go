@@ -18,7 +18,7 @@ var (
 var getDownloadsCmd = &cobra.Command{
 	Use:   "downloads",
 	Short: "display the downloads for assets for a user and repository",
-	Long:  `The 'get downloads' command displays the downloads for asssets for a GitHub repository.`,
+	Long:  `The 'get downloads' command displays the downloads for assets for a GitHub repository.`,
 	Args:  cobra.ExactArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		var (

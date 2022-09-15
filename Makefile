@@ -83,7 +83,7 @@ $(BUILD_PROPS):
 	@mkdir -p $(BUILD_BIN)
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Internal make step that builds the Coherence CLI for local platform
+# Internal make step that builds ghstats local platform
 # ----------------------------------------------------------------------------------------------------------------------
 .PHONY: ghstats
 ghstats: $(BUILD_BIN)/ghstats-local   ## Build the binary for the local platform
@@ -92,6 +92,31 @@ $(BUILD_BIN)/ghstats-local: $(BUILD_PROPS) $(GOS)
 	@echo "Building ghstats"
 	CGO_ENABLED=0 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -o $(BUILD_BIN)/ghstats ./ghstats
 
+# ----------------------------------------------------------------------------------------------------------------------
+# Internal make step that builds ghstats for all platforms
+# ----------------------------------------------------------------------------------------------------------------------
+.PHONY: ghstats-all
+ghstats-all: $(BUILD_PROPS) $(GOS)  ## Build the ghstats supported platforms
+	@echo "Building ghstatsall supported platforms"
+	@echo "Linux amd64 (x64)"
+	mkdir -p $(BUILD_BIN)/linux/amd64 || true
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -o $(BUILD_BIN)/linux/amd64/ghstats ./ghstats
+
+	@echo "Linux arm64"
+	mkdir -p $(BUILD_BIN)/linux/arm64 || true
+	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/linux/arm64/ghstats ./ghstats
+
+	@echo "Linux i386"
+	mkdir -p $(BUILD_BIN)/linux/386 || true
+	CGO_ENABLED=0 GOOS=linux GOARCH=386 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/linux/386/ghstats ./ghstats
+
+	@echo "Windows amd64 (x64)"
+	mkdir -p $(BUILD_BIN)/windows/amd64 || true
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/windows/amd64/ghstats.exe ./ghstats
+
+	@echo "Windows arm"
+	mkdir -p $(BUILD_BIN)/windows/arm || true
+	CGO_ENABLED=0 GOOS=windows GOARCH=arm GO111MODULE=on go build -trimpath -ldflags "$(LDFLAGS)" -a -o $(BUILD_BIN)/windows/arm/ghstats.exe ./ghstats
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Executes golangci-lint to perform various code review checks on the source.

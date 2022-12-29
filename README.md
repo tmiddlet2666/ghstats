@@ -13,14 +13,14 @@ Thus CLI displays download metrics for GitHub repositories.
 ## Mac AMD
 
 ```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-darwin-amd64"
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-darwin-amd64"
 chmod u+x ./ghstats
 ```
 
 ## Mac ARM
 
 ```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-darwin-arm64"
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-darwin-arm64"
 chmod u+x ./ghstats
 ```
 
@@ -41,14 +41,14 @@ curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0
 ### Linux AMD
 
 ```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-linux-amd64"
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-linux-amd64"
 chmod u+x ./ghstats
 ```
 
 ### Linux ARM
 
 ```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-linux-arm64"
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-linux-arm64"
 chmod u+x ./ghstats
 ```
 

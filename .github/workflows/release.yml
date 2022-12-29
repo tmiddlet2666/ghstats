@@ -109,8 +109,8 @@ jobs:
          GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: bin/windows/arm64/ghstats.exe
-        asset_name: ghstats-${{ steps.version.outputs.version }}-windows-arm64.exe
+        asset_path: bin/windows/arm/ghstats.exe
+        asset_name: ghstats-${{ steps.version.outputs.version }}-windows-arm.exe
         asset_content_type: application/x-dosexec
 
     - name: Upload Mac amd artifact

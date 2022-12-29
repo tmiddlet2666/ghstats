@@ -29,7 +29,7 @@ jobs:
 
     - name: Unit Tests
       shell: bash
-      run: make test
+      run: make test-clean test
 
     - name: Build
       shell: bash

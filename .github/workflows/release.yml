@@ -1,0 +1,142 @@
+# Copyright (c) 2021, 2022 Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at
+# http://oss.oracle.com/licenses/upl.
+
+# ---------------------------------------------------------------------------
+# Coherence CLI GitHub Actions Release build.
+# ---------------------------------------------------------------------------
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_release:
+    name: build_release
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.19
+
+    - name: Code Review
+      shell: bash
+      run: echo make golangci
+
+    - name: Unit Tests
+      shell: bash
+      run: make test
+
+    - name: Build
+      shell: bash
+      run: make clean ghstats
+
+    - name: Set Version
+      shell: bash
+      run: echo "::set-output name=version::$(./bin/ghstats version | grep 'Version:' | awk '{print $3}')"
+      id: version
+
+    - name: Build Binaries
+      shell: bash
+      run: |
+        make cohctl-all
+        # Save the bin directory
+        TMP_BIN=/tmp/ghstats-bin
+        mkdir -p ${TMP_BIN} || true
+        cp -R bin/* ${TMP_BIN}
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: GhStats - ${{ steps.version.outputs.version }}
+        tag_name: ${{ github.ref }}
+        body: GhStats Release ${{ steps.version.outputs.version }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Upload linux amd64 artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/linux/amd64/ghstats
+        asset_name: ghstats-${{ steps.version.outputs.version }}-linux-amd64
+        asset_content_type: application/x-mach-binary
+
+    - name: Upload linux arm64 artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/linux/arm64/ghstats
+        asset_name: ghstats-${{ steps.version.outputs.version }}-linux-arm64
+        asset_content_type: application/x-executable
+
+    - name: Upload linux 386 artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/linux/386/ghstats
+        asset_name: ghstats-${{ steps.version.outputs.version }}-linux-386
+        asset_content_type: application/x-executable
+
+    - name: Upload Windows amd64 artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/windows/amd64/ghstats.exe
+        asset_name: ghstats-${{ steps.version.outputs.version }}-windows-amd64.exe
+        asset_content_type: application/x-dosexec
+
+    - name: Upload Windows arm artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/windows/arm64/ghstats.exe
+        asset_name: ghstats-${{ steps.version.outputs.version }}-windows-arm64.exe
+        asset_content_type: application/x-dosexec
+
+    - name: Upload Mac amd artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/darwin/amd64/ghstats
+        asset_name: ghstats-${{ steps.version.outputs.version }}-darwin-amd64
+        asset_content_type: application/x-dosexec
+
+    - name: Upload Mac arm artifact
+      uses: actions/upload-release-asset@v1
+      env:
+         GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: bin/darwin/arm64/ghstats
+        asset_name: ghstats-${{ steps.version.outputs.version }}-darwin-arm64
+        asset_content_type: application/x-dosexec
+
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: test-output
+        path: build/_output/test-logs

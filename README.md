@@ -2,7 +2,56 @@
 
 ## Overview
 
-Displays download metrics for GitHub repositories.
+Thus CLI displays download metrics for GitHub repositories.
+
+* [Installing](#installing)
+* [Building](#building)
+* [Usage](#usage)
+
+## Installing
+
+## Mac AMD
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-darwin-amd64"
+chmod u+x ./ghstats
+```
+
+## Mac ARM
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-darwin-arm64"
+chmod u+x ./ghstats
+```
+
+> Note: You will need to give the `ghstats` executable permissions in Security in Settings.
+
+### Windows AMD
+
+```cmd
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-amd64.exe"
+```
+
+### Windows ARM
+
+```cmd
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-arm64.exe"
+```
+
+### Linux AMD
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-linux-amd64"
+chmod u+x ./ghstats
+```
+
+### Linux ARM
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.9-linux-arm64"
+chmod u+x ./ghstats
+```
+
 
 ## Building
 

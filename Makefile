@@ -1,5 +1,6 @@
 
-VERSION ?= 1.0.0
+VERSION ?= 0.9.0
+MILESTONE ?=
 CURRDIR := $(shell pwd)
 
 override BUILD_BIN           := $(CURRDIR)/bin
@@ -133,7 +134,6 @@ ghstats-all: $(BUILD_PROPS) $(GOS)  ## Build the ghstats supported platforms
 golangci: $(TOOLS_BIN)/golangci-lint ## Go code review
 	$(TOOLS_BIN)/golangci-lint run -v --timeout=5m ./pkg/...
 
-
 # ======================================================================================================================
 # Test targets
 # ======================================================================================================================
@@ -169,7 +169,7 @@ test-clean: gotestsum ## Clean the go test cache
 # ----------------------------------------------------------------------------------------------------------------------
 $(TOOLS_BIN)/golangci-lint:
 	@mkdir -p $(TOOLS_BIN)
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(TOOLS_BIN) v1.46.2
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(TOOLS_BIN) v1.50.1
 
 
 # go-get-tool will 'go get' any package $2 and install it to $1.

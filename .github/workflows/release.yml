@@ -39,7 +39,7 @@ jobs:
 
     - name: Set Version
       shell: bash
-      run: echo "::set-output name=version::$(./bin/ghstats version | grep 'Version:' | awk '{print $3}')"
+      run: echo "::set-output name=version::$(./bin/ghstats version | grep 'Version:' | awk '{print $2}')"
       id: version
 
     - name: Build Binaries

@@ -47,7 +47,9 @@ jobs:
 
     - name: Unit Tests
       shell: bash
-      run: make test
+      run: |
+        GOBIN=`pwd`/build/tools/bin go install gotest.tools/gotestsum@v1.8.1
+        make test
 
     - name: Build
       shell: bash

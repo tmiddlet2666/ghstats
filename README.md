@@ -35,7 +35,7 @@ curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0
 ### Windows ARM
 
 ```cmd
-curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-arm64.exe"
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-arm.exe"
 ```
 
 ### Linux AMD

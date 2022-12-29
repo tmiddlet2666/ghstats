@@ -29,9 +29,6 @@ jobs:
 
     - name: Unit Tests
       shell: bash
-
-    - name: Unit Tests
-      shell: bash
       run: |
         GOBIN=`pwd`/build/tools/bin go install gotest.tools/gotestsum@v1.8.1
         make clean test-clean test

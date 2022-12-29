@@ -45,7 +45,7 @@ jobs:
     - name: Build Binaries
       shell: bash
       run: |
-        make cohctl-all
+        make ghstats-all
         # Save the bin directory
         TMP_BIN=/tmp/ghstats-bin
         mkdir -p ${TMP_BIN} || true

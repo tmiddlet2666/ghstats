@@ -162,13 +162,13 @@ chmod u+x ./ghstats
 ### Windows AMD
 
 ```cmd
-curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-amd64.exe"
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-windows-amd64.exe"
 ```
 
 ### Windows ARM
 
 ```cmd
-curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-arm.exe"
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-windows-arm.exe"
 ```
 
 ### Linux AMD

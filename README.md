@@ -2,62 +2,12 @@
 
 ## Overview
 
-Thus CLI displays download metrics for GitHub repositories.
+A command line tool to display download and repository metrics for GitHub repositories.
 
+* [Usage](#usage)
 * [Installing](#installing)
 * [Building](#building)
-* [Usage](#usage)
 
-## Installing
-
-## Mac AMD
-
-```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-darwin-amd64"
-chmod u+x ./ghstats
-```
-
-## Mac ARM
-
-```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-darwin-arm64"
-chmod u+x ./ghstats
-```
-
-> Note: You will need to give the `ghstats` executable permissions in Security in Settings.
-
-### Windows AMD
-
-```cmd
-curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-amd64.exe"
-```
-
-### Windows ARM
-
-```cmd
-curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-arm.exe"
-```
-
-### Linux AMD
-
-```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-linux-amd64"
-chmod u+x ./ghstats
-```
-
-### Linux ARM
-
-```bash
-curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-linux-arm64"
-chmod u+x ./ghstats
-```
-
-
-## Building
-
-```bash
-make ghstats
-```
 
 ## Usage
 
@@ -185,4 +135,59 @@ v3.1.5  coherence-operator.yaml  2021-04-09T09:03:11Z        6.16KB          71
 v3.1.4  coherence-operator.yaml  2021-03-04T21:40:14Z        5.44KB          27  
                                                                      ----------  
                                                        TOTAL                282  
+```
+
+
+## Installing
+
+Download any release directly from https://github.com/tmiddlet2666/ghstats/releases.
+
+## Mac AMD
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-darwin-amd64"
+chmod u+x ./ghstats
+```
+
+## Mac ARM
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-darwin-arm64"
+chmod u+x ./ghstats
+```
+
+> Note: For Mac downloads open Finder and locate the `ghstats` executable, right-click and choose `open`. You 
+> will be warned you are opening a file from an unknown developer, confirm this and you will be able to run on command line with no warndings.
+
+### Windows AMD
+
+```cmd
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-amd64.exe"
+```
+
+### Windows ARM
+
+```cmd
+curl -Lo ghstats.exe "https://github.com/tmiddlet2666/ghstatsreleases/download/0.9.0/ghstats-0.9.0-windows-arm.exe"
+```
+
+### Linux AMD
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-linux-amd64"
+chmod u+x ./ghstats
+```
+
+### Linux ARM
+
+```bash
+curl -Lo ghstats "https://github.com/tmiddlet2666/ghstats/releases/download/0.9.0/ghstats-0.9.0-linux-arm64"
+chmod u+x ./ghstats
+```
+
+
+## Building
+
+```bash
+make ghstats
 ```

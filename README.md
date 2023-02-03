@@ -1,5 +1,8 @@
 # GHSTATS
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/tmiddlet2666/ghstats)](https://goreportcard.com/report/github.com/tmiddlet2666/ghstats)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/tmiddlet2666/ghstats)
+
 ## Overview
 
 A command line tool to display download and repository metrics for GitHub repositories.
